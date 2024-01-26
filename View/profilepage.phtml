@@ -1,0 +1,75 @@
+<?php require('template/header.phtml') ?>
+<h1>Profile page</h1>
+<table class="table">
+    <thead>
+    <th  scope="col">Your ID</th> <th scope="col"> Image </th>  <th scope="col"> Username </th> <th scope="col"> Email </th>l <th scope="col"> First name </th><th scope="col">Last name</th>
+    </thead>
+    <tbody>
+    <?php
+    foreach($view->profile as $userdata)
+        {
+            echo '<tr> <td>' . $userdata->getUserID() .
+                '</td> <td>' . $userdata->getUserImage() .
+                '</td> <td>' . $userdata->getUsername() .
+                '</td> <td>' . $userdata->getEmail() .
+                '</td> <td>' . $userdata->getFirstname().
+                '</td> <td>' . $userdata->getSurname() .
+                '</td> </td> </tr>';
+
+        }
+
+    ?>
+    </tbody>
+</table>
+
+<form method="post"  enctype="multipart/form-data" action="profilepage.php" >
+    <div class="form-group">
+        <!-- <p>If you would like to update your details please fill in the following</p> -->
+        <hr>
+
+            <div class="col-xxl-4">
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="row g-3 text-center ">
+                        <h4 class="mb-4 mt-0">Upload your photo</h4>
+                        <div class="text-center">
+                            <!-- Image upload -->
+                            <div class="square position-relative display-2 mb-3">
+                                <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+                            </div>
+                            <!-- Button -->
+                            <input type="file" accept="image/*" id="image" name="image" >
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+
+                        </div>
+
+                        <input type="text" name="newUsername" placeholder="Enter new username" >
+                        <button type="submit" name="submitnewUsername" >Submit</button>
+                        <br>
+                        <input type="text" name="newEmail" placeholder="Enter new email" >
+                        <button type="submit" name="submitnewemail" >Submit</button>
+                        <br>
+                        <input type="text" name="newPass" placeholder="Enter new password" >
+                        <button type="submit" name="submitnewPassword" >Submit</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+</form>
+
+<!-- enables users to send email alerts to their email and chosen email address through php's mail function-->
+<form action="emailalert.php" method="post">
+    <div class="container">
+        <p>Fill in all fields to enable security alert</p>
+        <hr>
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="chosenemail" required>
+        <br/>
+        <button type="submit" name="emailbutton" class="btn btn-primary">Send</button>
+    </div>
+
+</form>
+
+<?php require('template/footer.phtml') ?>

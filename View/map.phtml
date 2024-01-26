@@ -1,0 +1,50 @@
+
+<?php require_once ('template/header.phtml') ?>
+    <!-- https://harrywood.co.uk/maps/examples/openlayers/marker-popups.html -->
+    <!-- displays map through div mapdiv js file kept at bottom to prevent slow loading pages due to requests-->
+<div class="center-block">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <div id="mapdiv" class="container center-block text-center" style="width:800px;height:600px;">
+            <div id="Overlay"></div>
+        </div>
+
+
+
+        <div id="explanation">Turning into json and display hotels. These are manually added to the site.</div>
+</form>
+</div>
+
+<div class="">
+        <table class="table table-hover">
+            <thead>
+
+            <tr><th>Friend username</th><th>Your user ID</th><th>Friends user ID</th><th>Status</th><th>Pending Request</th></tr>
+
+            <!-- creates table to view all user friends displaying the above fields-->
+            </thead>
+            <tbody>
+            <!-- can only view when logged in-->
+<?php
+if (isset($_SESSION['login'])) {
+    foreach ($view->userdataset as $friends) {
+        echo '<tr> <td>' . $friends->getFriendUsername() .
+            //'</td> <td>' . $friends->getFriendID() .
+            '</td> <td>' . $friends->getFriend1() .
+            '</td> <td>' . $friends->getFriend2() .
+            '</td> <td>' . $friends->getStatus() .
+            '</td> <td>
+             <form action="users.php" method = "post" >
+                        <button type ="submit" name="acceptFriend" onclick ="this.onclick=function() { return false; };" >Accept Request</button> 
+                        </form>
+            </td>  </tr>';
+
+    }}
+    else{
+        echo "You do not have access redriecting...";
+        header("Location: http://localhost:8000/index.php");
+    }
+
+    ?>
+</div>
+
+<?php require('template/footer.phtml') ?>

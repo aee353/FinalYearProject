@@ -1,0 +1,26 @@
+<?php require('template/header.phtml') ?>
+<!-- table to format the chatbox layout -->
+<div class="chat-box">
+    <table>
+        <thead>
+        <tr>
+        <th>User</th>
+        <th>message</th>
+        </tr>
+        </thead>
+        <tbody id="messages">
+        <!-- message content via javascript -->
+        </tbody>
+    </table>
+</div>
+<!-- enables user to send a new message to any user based on the users id and updates database  -->
+<div class="chat-form">
+    <form action="messaging.php" class="typing-area">
+        <input type="text" class="outgoing_id" name="outgoing_id" hidden>
+        <input type="text" class="incoming_id" name="incoming_id" placeholder="Type user ID...">
+        <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+        <button type="submit" name="sndmessage">Send</button>
+    </form>
+</div>
+
+<?php require("template/footer.phtml") ?>

@@ -1,0 +1,48 @@
+<?php require('template/header.phtml') ?>
+    <h1>Profile page</h1>
+<div class="container">
+            <div class="col-md-6">
+                <div class="review-form">
+                    <form action="adminpage.php" class="typing-area">
+                        <div class="mb-3">
+                            <label for="hotel" class="form-label">Hotel Name</label>
+                            <input type="text" class="form-control" id="hotel" name="hotel" placeholder="Type hotel name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="review" class="form-label">Review box</label>
+                            <input type="text" class="form-control" id="review" name="review" placeholder="Type review" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating (0-5) </label>
+                            <input type="text" id="rating" name="rating" class="form-control" placeholder="Enter rating" autocomplete="off" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="sendreview">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr><th>Hotel ID</th><th>Hotel name</th><th>Review</th><th>Rating</th></tr>;
+
+
+        </thead>
+        <tbody>
+        <?php
+        foreach ($view->search as $hotel) {
+            echo '<tr> <td>' . $hotel->getHID() .
+                '</td> <td>' . $hotel->getHotel() .
+                '</td> <td>' . $hotel->getReview().
+                '</td> <td>' . $hotel->getRating() .
+                '</td> <td>' . '<form action="adminpage.php" method = "post" >
+                        <button type ="submit" name="deleteUser">Delete Review</button>
+                        <input type="hidden" name="hiddenHID" value=" ' . $hotel->getHID() . ' "> 
+                        </form>' .
+                '</td> </td> </tr>';
+        } ?>
+        </tbody>
+    </table>
+<?php require("template/footer.phtml")?>

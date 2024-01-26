@@ -1,0 +1,46 @@
+<?php require('template/header.phtml') ?>
+
+<h3 class = "text-center ">Welcome to female solo travel </h3>
+
+<p class = "text-center ">
+    This website was created to assist in ensuring you make informed safe decsisions on your travels.<br>
+    Members provide informative details on hotels, and destinations.
+</p>
+
+<p class = "text-center ">
+    In order to access the website please log in, if you do not have an account please register below:
+</p>
+<!-- form that enables new users to register onto the system-->
+
+<div class="row d-flex p-2">
+    <form action="index.php" method="post">
+        <div class="container center-block text-center">
+            <h1>Sign up</h1>
+            <p>Please fill in all fields</p>
+            <hr>
+
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Username" name="username" required>
+            <br/>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+            <br/>
+            <label for="firstname"><b>First name</b></label>
+            <input type="text" placeholder="Enter Firstname" name="firstname" required>
+            <br/>
+            <label for="surname"><b>Surname</b></label>
+            <input type="text" placeholder="Enter Surname" name="surname" required>
+            <br/>
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <br/>
+            <label for="nospam"><b>Press if NOT a robot</b></label>
+            <input type="checkbox" name="nospam" value="Press if NOT a robot" required>
+            <br/>
+            <button type="submit" name="signButton" class="btn btn-primary">Sign Up</button>
+        </div>
+
+    </form>
+</div>
+
+<?php require("template/footer.phtml") ?>

@@ -1,0 +1,42 @@
+
+<?php require('template/header.phtml') ?>
+
+<h1>Welcome to Page2</h1>
+<!-- improve visuals and fix sql to add -->
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr><th>User ID</th><th>User name</th><th>First name</th><th>Last name</th><th> Add User </th></tr>;
+        </thead>
+
+        <tbody>
+        <?php
+       // if (isset($_SESSION['login'])) {
+            foreach ($view->usersPage as $userdata) {
+                echo  '<tr> <td>' . $userdata->getUserID() .
+                    '</td> <td>' . $userdata->getUsername() .
+                    '</td> <td>' . $userdata->getFirstname().
+                    '</td> <td>' . $userdata->getSurname() .
+                    '</td> <td>
+                        <form action="users.php" method = "post" >
+                        <button type ="submit" name="addFriend">Add Friend</button>
+                        <input type="hidden" name="hiddenFriendID" value=" ' . $userdata->getUserID() . ' "> 
+                        </form>
+                </td> </tr>';
+
+          //  }
+        }
+        ?>
+
+        <?php
+        for ($x=1; $x<=$view->numberOfPages; $x++)
+        {
+            echo '<form method="post" action="users.php?page=' . $x . '" ><input class="paginationInput" type="submit" value="' . $x. '"></form>';
+        }
+        ?>
+
+</tbody>
+    </table>
+
+<?php require('template/footer.phtml') ?>
